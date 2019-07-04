@@ -1,0 +1,19 @@
+<div class="d-flex justify-content-center">
+  <h1>The Boosters </h1>
+</div>
+<% if !current_user && current_user&.roles&.include?(Role.all.first) %>
+  <div class="d-flex justify-content-center text-center">
+    <p>Для того, чтобы присоединиться к сообществу, войдите с помощью своего аккаунта вконтакте</p>
+  </div>
+  <div class="d-flex justify-content-center"><%= link_to "<button>Войти</button>".html_safe, user_vkontakte_omniauth_authorize_path %></div>
+<% elsif @member %>
+  <div class="d-flex justify-content-center text-center">
+    <p>Заявка отправлена на модерацию, <%= current_user&.name %>. <br>
+      Скоро она будет рассмотрена.</p>
+  </div>
+<% else %>
+  <div class="d-flex justify-content-center text-center">
+    <p>Вы еще не с нами, <%= current_user&.name %>. <br>
+      Для продолжения работы вы должны состоять в сообществе https://vk.com/theboosters</p>
+  </div>
+<% end %>

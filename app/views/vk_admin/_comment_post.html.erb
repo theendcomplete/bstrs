@@ -1,0 +1,10 @@
+<div class="row justify-content-md-center">
+  <h2>Запостить комменты</h2>
+</div>
+<div class="row justify-content-md-center">
+  <%= form_tag({controller: "vk_admin", action: "post_comment"}, method: "post") do %>
+    <%= label_tag(:q, "URL:") %>
+    <%= text_field_tag(:q, nil, placeholder: 'Например, https://vk.com/theboosters') %>
+    <%= submit_tag("Comment!") %>
+  <% end %>
+</div>

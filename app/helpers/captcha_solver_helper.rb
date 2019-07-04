@@ -1,0 +1,2 @@
+module CaptchaSolverHelper
+end

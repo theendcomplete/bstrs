@@ -1,0 +1,9 @@
+<div class="row justify-content-md-center">
+  <%= form_for @new_post, url: post_new_path, html: {method: :post} do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %><br/>
+    <%= f.label :address %>
+    <%= f.text_field :address %><br/>
+    <%= f.submit %>
+  <% end %>
+</div>

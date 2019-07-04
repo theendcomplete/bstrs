@@ -1,0 +1,24 @@
+<div class="col-lg-8 align-middle">
+  <div class="row">
+    <h3>Пригласить друзей в бустерс:</h3>
+  </div>
+  <table class="table table-bordered align-middle fluid ">
+    <thead>
+    <tr>
+      <th colspan="2" scope="col">Имя</th>
+      <th scope="co1">Пригласить</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @friends.each do |u| %>
+      <div class="row text-center">
+        <tr>
+          <td colspan="2">  <%= u['first_name'] + ' ' + u['last_name'] %> </td>
+          <td><%= link_to "Пригласить", send_invite_path(user_id: u['id']), method: 'post', type: 'button', class: 'btn btn-dark rounded-1' %></td>
+        </tr>
+    <% end %>
+    </div>
+    </tbody>
+  </table>
+</div>
+

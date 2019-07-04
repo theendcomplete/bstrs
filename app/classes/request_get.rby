@@ -1,0 +1,22 @@
+ class RequestGet
+   attr_accessor url, params
+
+   def self.make_request(params={})
+       params['v'] = 5.92
+       puts "making a request"       
+       p url
+       p params
+       URI.parse("#{params['url']}?#{params.to_query}").read
+      # if JSON.parse(result)['response']
+      #   count = JSON.parse(result)['response']['count']
+      #   if count.nil?
+      #     return 'Ошибка'
+      #   else
+      #     return count
+      #   end
+      # end
+      # if JSON.parse(result)['error']['error_msg'].to_s
+      
+     #end
+   end
+ end

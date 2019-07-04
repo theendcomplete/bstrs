@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+</head>
+<body>
+<h1><%= @user %> разместил новый пост!</h1><br>
+<p>
+  Тема поста: <%= @post.name %>
+  <br>
+  Адрес: <%= link_to @post.address, @post.address %>
+  <br>
+  <%= link_to 'Перейти в панель администратора', vk_admin_new_posts_list_url %>
+</p>
+</body>
+</html>

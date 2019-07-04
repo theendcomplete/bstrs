@@ -1,0 +1,30 @@
+<% if current_user&.vk_admin? %>
+  <div class="row justify-content-md-center">
+    <div class="h2">Панель администратора ВК</div>
+  </div>
+  <div class="row justify-content-md-left">
+    Total users: <%= @users_count %>
+  </div>
+
+  <div class="col-md-10 text-center">
+    <div class="row justify-content-md-center">
+      <h2>Лайкнуть пост</h2>
+    </div>
+    <div class="row justify-content-md-center">
+
+      <%= form_tag({controller: "vk_admin", action: "make_like"}, method: "POST") do %>
+        <%= label_tag(:q, "URL:") %>
+        <%= text_field_tag(:q, nil, placeholder: 'Например, https://vk.com/wall-72495085_870406') %>
+        <%= submit_tag("Like!") %>
+      <% end %>
+    </div>
+    <%= render 'vk_admin/follow_group' %>
+    <%= render 'vk_admin/comment_post' %>
+    <%= render 'vk_admin/create_captcha_objects' %>
+    <%= render 'vk_admin/invite_friends_to_group' %>
+  </div>
+
+<% else %>
+  <p> Извините, недостаточно прав для просмотра этой страницы :(</p>
+<% end %>
+</div>

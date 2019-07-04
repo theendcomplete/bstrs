@@ -1,0 +1,17 @@
+<h1>Meetings#index</h1>
+<p>Find me in app/views/meetings/index.html.erb</p>
+
+
+<%#= form_with model: @meeting, class: "nifty_form" do |f| %>
+<%= form_for(@meeting, :as => 'meeting', :url => meetings_create_path, :html => {role: 'form'}) do |f| %>
+  <%= f.text_field :name %>
+  <%= f.text_field :address %>
+  <%= f.submit "Create" %>
+<% end %>
+
+<!--t.string "name"-->
+<!--t.string "address"-->
+<!--t.datetime "created_at", null: false-->
+<!--t.datetime "updated_at", null: false-->
+<!--t.integer "vkid", default: 0-->
+<!--t.integer "community_type", default: 0-->

@@ -1,0 +1,39 @@
+<div id="add-email" class="text-center">
+  <h2>Завершение регистрации</h2>
+  <%= form_for(current_user, :as => 'user', :url => finish_signup_path(current_user), :html => {role: 'form'}) do |f| %>
+    <% if @show_errors && current_user.errors.any? %>
+      <div id="error_explanation">
+        <% current_user.errors.full_messages.each do |msg| %>
+          <%= msg %><br>
+        <% end %>
+      </div>
+    <% end %>
+    <h4>Получите access token, пройдя по ссылке ниже и скопировав содержимое адресной строки браузера</h4>
+    <div class="d-flex justify-content-center">
+      <%= link_to "https://oauth.vk.com/authorize?client_id=6708641&display=page&redirect_uri=https://oauth.vk.com/blank.html&scope=wall,groups,offline&response_type=token&v=5.85", target: :_blank do %>
+        <%#= image_tag("facebook.png", class: :facebook_icon, alt: "Facebook") %>
+        <% button_tag(type: 'button') do
+          content_tag(:strong, 'Получить новый токен')
+        end %>
+      <% end %>
+    </div>
+    <div class="controls text-center v-offst-10">
+      <%= f.text_field :vk_offline_token, :autofocus => true, :value => current_user&.vk_offline_token, :required => true, :pattern => "^https://oauth.vk.com/blank.html#.+|^.{85,85}$", class: 'form-control input-lg', placeholder: 'Например: https://oauth.vk.com/blank.html#access_token=451d3375b3ddopllfasq5ff4b0c807c58613cc22cas187ab1ae124124asfas181b0c4930969a2df9bb90&expires_in=0&user_id=1421414', :target => "_blank" %>
+      <p class="help-block text-center">Вставьте скопированный URL сюда целиком, чтобы установить или обновить токен</p>
+    </div>
+    <% if current_user&.vcommunities.size > 0 %>
+      <h4> Вы уже пиарите <%= current_user&.vcommunities&.last&.address %></h4>
+      Для смены сообщества обратитесь к администратору сообщества "the Boosters".
+    <% else %>
+      <h4>Пожалуйста, вставьте ссылку на своё сообщество в поле ниже</h4>
+      <div class="controls text-center">
+        <%= text_field_tag :vk_community, current_user&.vcommunities&.last&.address, class: 'form-control input-lg', :required => true, placeholder: 'Например: https://vk.com/theboosters' %>
+        <p class="help-block text-center">Вставьте URL сюда</p>
+      </div>
+    <% end %>
+    <div class="actions">
+      <%= f.submit 'Continue', :class => 'btn btn-primary' %>
+    </div>
+
+  <% end %>
+</div>

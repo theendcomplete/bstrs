@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  vkid: 1
+  owner_id: 1
+  question: MyString
+  votes: 1
+  end_date: 1
+  author_id: 1
+
+two:
+  vkid: 1
+  owner_id: 1
+  question: MyString
+  votes: 1
+  end_date: 1
+  author_id: 1

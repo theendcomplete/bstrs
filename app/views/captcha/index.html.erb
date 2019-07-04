@@ -1,0 +1,52 @@
+<h4>Нерешенные капчи:</h4>
+
+<% if @captchas.size == 0 %>
+  <b>У вас пока нет нерешенных капч!)</b>
+<% else %>
+
+<!--  <div class="row">-->
+<!--    <b> Всего капч: <%#= @captchas.size %> </b>-->
+<!--  </div>-->
+
+  <table class="table table-bordered text-center">
+    <thead>
+    <tr>
+      <th colspan="1" scope="col">captcha_sid</th>
+      <th colspan="1" scope="col">captcha_img</th>
+      <th colspan="2" scope="col">solution</th>
+      <th colspan="4" scope="col">result</th>
+    </tr>
+    <div class="digg_pagination">
+      <%= will_paginate @captchas %>
+    </div>
+    </thead>
+    <tbody>
+    <% @captchas.each do |c| %>
+      <div class="row text-center">
+        <tr>
+          <td colspan="1">  <%= c.captcha_sid %> </td>
+          <td colspan="1">  <%= image_tag(url_for(c.image)) %> </td>
+          <td colspan="2">
+            <div class="text-center">
+              <%= form_tag captcha_solve_path(c), remote: true, method: :post,
+                           id: "captcha_solution_form" do %>
+                <div class="text-center">
+                  <%= text_field_tag :solution, nil, class: "form-control", placeholder: "решение капчи", autofocus: "true" %>
+                  <%= button_tag(type: :submit, class: "btn btn-small") do %>
+                    <i class="fa fa-send"></i>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
+          </td>
+          <td colspan="4">
+            <div id=<%= c.captcha_sid.to_s + "_results" %>>
+              <%= render 'result' %>
+            </div>
+          </td>
+        </tr>
+      </div>
+    <% end %>
+    </tbody>
+  </table>
+<% end %>

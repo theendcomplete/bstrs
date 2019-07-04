@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Boosters</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%= favicon_link_tag asset_path('favicon.ico') %>
+</head>
+<div>
+  <%= render 'common/navbar' %>
+</div>
+<body>
+<div class="container">
+  <div class="col-lg-auto">
+    <div class="row">
+      <% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %>"><%= value %></div>
+        <br>
+      <% end %>
+    </div>
+    <!--    <div class="v-offst-54">-->
+    <div class="card">
+      <div class="card-body center-block">
+        <%= yield.force_encoding(Encoding::UTF_8) %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="v-offst-54">
+  <%= render 'common/footer' %>
+</div>
+</body>
+</html>

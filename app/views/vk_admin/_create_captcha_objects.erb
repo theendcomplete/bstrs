@@ -1,0 +1,8 @@
+<div class="row justify-content-md-center">
+  <h2>Создать объекты капчи</h2>
+</div>
+<div class="row justify-content-md-center">
+  <%= form_tag({controller: "vk_admin", action: "create_captcha_objects"}, method: "post") do %>
+    <%= submit_tag("Создать объекты капчи") %>
+  <% end %>
+</div>

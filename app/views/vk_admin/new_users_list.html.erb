@@ -1,0 +1,51 @@
+<div class="col-lg-8">
+  <div class="row">
+    <h3>Новые пользователи:</h3>
+  </div>
+  <table class="table table-bordered">
+    <thead>
+    <tr>
+      <!--      <th scope="col"></th>-->
+      <th colspan="2" scope="col">Имя</th>
+      <th colspan="2" scope="col">Группы</th>
+      <th scope="co1">в бустерс?</th>
+      <th scope="co1">Подписка</th>
+      <th scope="co1"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @new_users.each do |u| %>
+      <div class="row text-center">
+        <tr>
+          <td colspan="2">  <%= u.name %> </td>
+          <td colspan="2">
+            <% u.vcommunities.all.each do |v| %>
+              <%= link_to v.name, v.address %>
+            <% end %>
+          </td>
+          <td class="text-center"> <%= check_box "inBoosters", "inBoosters", {:checked => u.isBoostersMember, :disabled => true} %></td>
+          <td class="text-center"> <%= check_box "subrscr", "subrscr", {:checked => false, :disabled => true} %></td>
+          <% if u.isBoostersMember %>
+            <td><%= link_to "<button>Подтвердить</button>".html_safe, vk_admin_approve_user_path(u) %></td>
+          <% else %>
+            <td><%= link_to "<button>Пригласить</button>".html_safe, invite_user_path(u) %></td>
+          <% end %>
+        </tr>
+    <% end %>
+    </div>
+    </tbody>
+  </table>
+  <%# end %>
+</div>
+<!--<div id="pages_content">-->
+<%#= render vk_admin_preview_link_path %>
+<!--</div>-->
+<div class="row">
+  <div class="col-lg-12">
+    <div id="mydiv"></div>
+  </div>
+</div>
+<!--<script>-->
+<!--    $("#mydiv")-->
+<!--        .html('<object data="<%= vk_admin_preview_link_path %>"/>');-->
+<!--</script>-->
